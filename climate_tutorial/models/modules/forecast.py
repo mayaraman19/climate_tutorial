@@ -62,14 +62,14 @@ class ForecastLitModule(LightningModule):
         loss_dict, _ = self.net.forward(x, y, out_variables, [lat_weighted_mse], lat=self.lat)
         loss_dict = loss_dict[0]
         for var in loss_dict.keys():
-            self.log(
-                "train/" + var,
-                loss_dict[var],
-                on_step=True,
-                on_epoch=False,
-                prog_bar=True,
-                batch_size = len(x)
-            )
+            # self.log(
+            #     "train/" + var,
+            #     loss_dict[var],
+            #     on_step=True,
+            #     on_epoch=False,
+            #     prog_bar=True,
+            #     batch_size = len(x)
+            # )
         return loss_dict
 
     def validation_step(self, batch: Any, batch_idx: int):

@@ -143,15 +143,15 @@ class ForecastLitModule(LightningModule):
             for k in d.keys():
                 loss_dict[k] = d[k]
 
-        for var in loss_dict.keys():
-            self.log(
-                "test/" + var,
-                loss_dict[var],
-                on_step=False,
-                on_epoch=True,
-                sync_dist=True,
-                batch_size = len(x)
-            )
+        # for var in loss_dict.keys():
+        #     self.log(
+        #         "test/" + var,
+        #         loss_dict[var],
+        #         on_step=False,
+        #         on_epoch=True,
+        #         sync_dist=True,
+        #         batch_size = len(x)
+        #     )
             
         # rmse for climatology baseline
         clim_pred = self.train_clim # C, H, W

@@ -157,15 +157,15 @@ class ForecastLitModule(LightningModule):
         clim_pred = self.train_clim # C, H, W
         clim_pred = clim_pred.unsqueeze(0).unsqueeze(0).repeat(y.shape[0], y.shape[1], 1, 1, 1).to(y.device)
         baseline_rmse = lat_weighted_rmse(clim_pred, y, None, self.denormalization, out_variables, self.lat, steps, days, transform_pred=False)
-        for var in baseline_rmse.keys():
-            self.log(
-                "test_climatology_baseline/" + var,
-                baseline_rmse[var],
-                on_step=False,
-                on_epoch=True,
-                sync_dist=True,
-                batch_size = len(x)
-            )
+        # for var in baseline_rmse.keys():
+            # self.log(
+            #     "test_climatology_baseline/" + var,
+            #     baseline_rmse[var],
+            #     on_step=False,
+            #     on_epoch=True,
+            #     sync_dist=True,
+            #     batch_size = len(x)
+            # )
         
         return loss_dict
 
